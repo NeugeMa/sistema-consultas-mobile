@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native";
+
+/** Aparência da Home, separada do estado e dos handlers da tela. */
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -24,4 +26,3 @@ export const styles = StyleSheet.create({
     opacity: 0.9,
   },
 });
-

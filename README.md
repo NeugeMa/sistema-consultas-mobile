@@ -1,186 +1,129 @@
 # Sistema de Consultas Mobile
 
-Aplicativo mobile para gerenciamento de consultas médicas desenvolvido com React Native, Expo e TypeScript.
+Aplicativo mobile desenvolvido com Expo e React Native para demonstrar o fluxo básico de uma consulta médica. A tela principal exibe os dados da consulta, do médico e do paciente, além de permitir alterar o status entre `agendada`, `confirmada` e `cancelada`.
 
-## 📱 Sobre o Projeto
+## Tecnologias
 
-Este é um aplicativo mobile desenvolvido como parte das aulas de React Native. O sistema permite:
-- Visualizar lista de consultas médicas
-- Ver detalhes de cada consulta
-- Confirmar consultas agendadas
-- Cancelar consultas
-- Agendar novas consultas (em desenvolvimento)
+- Expo
+- React Native
+- React
+- TypeScript
 
-## 🏗️ Estrutura do Projeto
+## Funcionalidades
 
-```
-sistema-consultas-mobile/
-├── src/
-│   ├── components/          # Componentes reutilizáveis
-│   │   ├── ConsultaCard.tsx
-│   │   ├── Loading.tsx
-│   │   ├── EmptyState.tsx
+- Exibição de uma consulta médica em card
+- Visualização dos dados do médico e da especialidade
+- Visualização dos dados do paciente
+- Formatação de data no padrão `pt-BR`
+- Formatação de valor em real brasileiro (`BRL`)
+- Alteração de status da consulta com feedback visual
+
+## Estrutura do projeto
+
+```text
+.
+├── App.tsx
+├── src
+│   ├── components
+│   │   └── ConsultaCard.tsx
+│   ├── interfaces
+│   │   ├── consulta.ts
+│   │   └── medico.ts
+│   ├── screens
+│   │   └── Home.tsx
+│   ├── styles
+│   │   ├── app.styles.ts
+│   │   ├── consultaCard.styles.ts
+│   │   ├── home.styles.ts
 │   │   └── index.ts
-│   │
-│   ├── screens/             # Telas da aplicação
-│   │   ├── HomeScreen.tsx
-│   │   ├── ConsultasListScreen.tsx
-│   │   ├── ConsultaDetalhesScreen.tsx
-│   │   ├── NovaConsultaScreen.tsx
-│   │   └── index.ts
-│   │
-│   ├── navigation/          # Configuração de rotas
-│   │   └── index.tsx
-│   │
-│   ├── services/            # Lógica de negócio e API
-│   │   ├── consultasService.ts
-│   │   ├── apiService.ts
-│   │   ├── storageService.ts
-│   │   ├── mockData.ts
-│   │   └── index.ts
-│   │
-│   ├── types/               # Modelagem TypeScript
-│   │   └── index.ts
-│   │
-│   └── utils/               # Funções utilitárias
-│       ├── formatters.ts
-│       └── validators.ts
-│
-├── App.tsx                  # Componente raiz
-├── index.ts                 # Ponto de entrada
-├── app.json                 # Configuração do Expo
-├── package.json
-└── tsconfig.json
+│   └── types
+│       ├── especialidade.ts
+│       ├── paciente.ts
+│       └── statusConsulta.ts
+├── assets
+└── package.json
 ```
 
-## 🎯 Conceitos Aplicados
+## Como executar
 
-### TypeScript
-- ✅ Type Alias
-- ✅ Union Types
-- ✅ Literal Types
-- ✅ Omit e Partial
-- ✅ Record
-- ✅ Generics (preparado em apiService)
+### Pré-requisitos
 
-### React Native
-- ✅ Componentes funcionais
-- ✅ Hooks (useState, useEffect)
-- ✅ StyleSheet
-- ✅ FlatList
-- ✅ TouchableOpacity
-- ✅ Alert
+- Node.js instalado
+- npm instalado
+- Expo Go no celular ou emulador Android/iOS configurado
 
-### React Navigation
-- ✅ Stack Navigator
-- ✅ Navegação entre telas
-- ✅ Passagem de parâmetros
-- ✅ Tipagem de rotas
+### Instalação
 
-### Arquitetura
-- ✅ Separação de responsabilidades
-- ✅ Services para lógica de negócio
-- ✅ Componentes reutilizáveis
-- ✅ Mock data para desenvolvimento
-- ✅ Preparado para API real
-
-## 🚀 Como Executar
-
-### Instalar Dependências
 ```bash
 npm install
 ```
 
-### Iniciar o Servidor de Desenvolvimento
+### Executando o projeto
+
 ```bash
-npm start
+npx expo start
 ```
 
-### Executar no Navegador (Web)
-```bash
-npm run web
-```
-Ou pressione `w` no terminal após executar `npm start`.
+Com o servidor do Expo aberto, você pode:
 
-### Executar no Android
+- pressionar `a` para abrir no Android
+- pressionar `i` para abrir no iOS, quando estiver em macOS
+- pressionar `w` para abrir na web
+- escanear o QR Code com o Expo Go no celular
+
+Também é possível usar os atalhos:
+
 ```bash
 npm run android
-```
-Ou pressione `a` no terminal após executar `npm start`.
-
-### Executar no iOS (macOS apenas)
-```bash
 npm run ios
+npm run web
 ```
-Ou pressione `i` no terminal após executar `npm start`.
 
-### Executar com Expo Go
-1. Instale o app **Expo Go** no seu celular
-2. Execute `npm start`
-3. Escaneie o QR Code com a câmera (iOS) ou com o app Expo Go (Android)
+## Modelo de dados
 
-## 📦 Dependências Principais
+O projeto trabalha com as seguintes entidades:
 
-- **React Native**: Framework mobile
-- **Expo**: Plataforma e ferramentas
-- **TypeScript**: Tipagem estática
-- **React Navigation**: Navegação entre telas
-- **@react-native-async-storage/async-storage**: Persistência local (preparado)
+- `Especialidade`: representa a área médica
+- `Medico`: contém dados do profissional e sua especialidade
+- `Paciente`: contém dados cadastrais do paciente
+- `Consulta`: reúne médico, paciente, data, valor, observações e status
+- `StatusConsulta`: define os estados possíveis da consulta
 
-## 📚 Histórico de Aulas
+## Tela principal
 
-### Aula 26/02/2026 - MVP Inicial
-- ✅ Criação do projeto com Expo
-- ✅ Configuração do TypeScript
-- ✅ Primeiro componente com estado
-- ✅ Estilização com StyleSheet
-- ✅ Versionamento no GitHub
+A tela `Home` cria dados de exemplo em memória e renderiza o componente `ConsultaCard`, responsável por:
 
-### Aula 04/03/2026 - Arquitetura e Navegação
-- ✅ Criação da estrutura de pastas `src/`
-- ✅ Separação de types, components, screens, services e utils
-- ✅ Implementação do React Navigation
-- ✅ Criação de componentes reutilizáveis
-- ✅ Service layer com mock data
-- ✅ Preparação para AsyncStorage e API
+- mostrar o status atual da consulta
+- listar médico, paciente, data, valor e observações
+- exibir ações para confirmar ou cancelar enquanto a consulta estiver `agendada`
+- trocar a interface para mensagens de sucesso ou cancelamento após a ação
 
-## 🎨 Telas Implementadas
+## Scripts disponíveis
 
-### 1. HomeScreen
-Tela inicial com menu de navegação em cards coloridos.
+```bash
+npm start
+npm run android
+npm run ios
+npm run web
+```
 
-### 2. ConsultasListScreen
-Lista de consultas com filtros por status (Todas, Agendadas, Confirmadas).
+## Observações
 
-### 3. ConsultaDetalhesScreen
-Visualização detalhada de uma consulta com opções de confirmar/cancelar.
+### Organização de estilos — aula de 10/09/2026
 
-### 4. NovaConsultaScreen
-Formulário para agendar nova consulta (stub - em desenvolvimento).
+- `App.tsx` permanece como ponto de entrada, renderizando a Home.
+- `Home.tsx` mantém estado, handlers e JSX; sua aparência fica em `src/styles/home.styles.ts`.
+- `ConsultaCard.tsx` mantém a apresentação dos dados e ações; seus estilos ficam em `src/styles/consultaCard.styles.ts`.
+- `app.styles.ts` reexporta os estilos da Home para compatibilidade, evitando duas definições idênticas.
+- `src/styles/index.ts` centraliza as exportações como `homeStyles`, `consultaCardStyles` e `appStyles`.
+- Os contratos de dados continuam em `src/types/` e `src/interfaces/`.
 
-## 🔄 Próximos Passos
+Esta versão contém apenas Home e ConsultaCard, ambos já com estilos externos antes da revisão. Input, Button personalizado, Loading, EmptyState, as demais telas e a navegação citados na aula não existem nesta base. Não foram criados recursos novos para preencher o checklist de uma versão posterior do projeto. Cores, espaçamentos e regras de confirmação/cancelamento foram preservados.
 
-- [ ] Instalar e integrar AsyncStorage
-- [ ] Implementar formulário de nova consulta
-- [ ] Criar tela de perfil do usuário
-- [ ] Implementar autenticação
-- [ ] Integrar com API real
-- [ ] Adicionar testes unitários
-- [ ] Implementar notificações push
+Para verificar a tipagem, execute `npm run typecheck`. Para conferir o comportamento, execute `npm run web`, confirme uma consulta e verifique a mensagem e o status. Recarregue a página para restaurar os dados iniciais e repita com o cancelamento. Compare também a aparência em um dispositivo com Expo Go.
 
-## 👨‍💻 Desenvolvimento
+O remoto `origin` está configurado para `https://github.com/nandoantonio-git/sistema-consultas-mobile.git`. Para registrar o commit da atividade, configure sua identidade Git (`user.name` e `user.email`).
 
-Este projeto foi desenvolvido seguindo as melhores práticas de:
-- Clean Code
-- SOLID principles
-- Component-based architecture
-- Type safety com TypeScript
-- Git workflow profissional
-
-## 📄 Licença
-
-Este projeto é parte de material educacional.
-
----
-
-**Desenvolvido com ❤️ por [Seu Nome]**
+- O projeto utiliza dados mockados diretamente na tela inicial
+- Ainda não há integração com API ou persistência de dados
+- Ainda não há testes automatizados configurados
