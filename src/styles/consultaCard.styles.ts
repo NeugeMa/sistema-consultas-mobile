@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 
+/** Aparência do ConsultaCard e de seus estados de consulta. */
 export const styles = StyleSheet.create({
   card: {
     backgroundColor: "#fff",
